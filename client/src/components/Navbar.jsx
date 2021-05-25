@@ -97,7 +97,7 @@ export default function Navbar(props) {
                         className="collapse navbar-collapse"
                         id="navbarSupportedContent">
                         <ul className="navbar-nav mx-auto mb-lg-0">
-                            <li className="nav-item">
+                            <li className="nav-item navItems">
                                 <NavLink
                                     className="nav-link active"
                                     aria-current="page"
@@ -105,7 +105,7 @@ export default function Navbar(props) {
                                     Home
                                 </NavLink>
                             </li>
-                            <li className="nav-item">
+                            <li className="nav-item navItems">
                                 <NavLink
                                     className="nav-link"
                                     aria-current="page"
@@ -115,7 +115,7 @@ export default function Navbar(props) {
                             </li>
                         </ul>
                         {!Auth.isUser ? (
-                            <div className="nav-item logout">
+                            <div className="nav-item logout navItems">
                                 <NavLink
                                     className="nav-link"
                                     aria-current="page"
@@ -125,7 +125,9 @@ export default function Navbar(props) {
                             </div>
                         ) : null}
                         {Auth.isUser ? (
-                            <div className="nav-item" onClick={handleLogout}>
+                            <div
+                                className="nav-item navItems"
+                                onClick={handleLogout}>
                                 logout <HiOutlineLogout />
                             </div>
                         ) : null}

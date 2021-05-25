@@ -1,0 +1,135 @@
+.start-conversation {
+    width: 60%;
+    height: 600px;
+    min-height: 500px;
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+    align-content: center;
+}
+
+.start-conversation p {
+    min-width: 15rem;
+    font-size: 2.5rem;
+    display: flex;
+    justify-content: center;
+    padding: 0.45rem 0.5rem;
+    border-radius: 1rem;
+    min-height: 5rem;
+    font-weight: 600;
+}
+
+.friends {
+    height: 550px;
+    margin-top: 0.5rem;
+    overflow: hidden;
+}
+
+.list-friends {
+    width: 100%;
+    min-height: 500px;
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+    border: 2px solid #f1f1f1;
+    border-radius: 0.5rem;
+    padding: 0.5rem;
+    box-shadow: 2px 2px 13px #f1f1f1;
+    z-index: 999;
+    overflow-y: scroll;
+}
+.one-friend {
+    max-height: 4.5rem;
+    width: 100%;
+    display: flex;
+    flex-direction: row;
+    justify-content: flex-start;
+    margin-bottom: 0.5rem;
+    padding: 0.5rem;
+}
+.one-friend:last-of-type {
+    border-bottom: none !important;
+}
+.list-friends:last-child {
+    border-top: none !important;
+    border-bottom: none !important;
+}
+
+.username {
+    margin: 0.5rem 1.5rem;
+    padding-top: 0 0.5rem;
+}
+.option {
+    display: flex;
+    flex-direction: row;
+    list-style: none;
+    margin-left: auto;
+    padding: 0 0.5rem;
+}
+
+.option li {
+    font-size: 1.5rem;
+    margin-right: 0.5rem;
+    color: #f1f1f1;
+}
+.option li:hover {
+    cursor: pointer;
+    transition: all 0.5s;
+}
+
+.container-image {
+    width: 3rem;
+    height: 3rem;
+    border-radius: 100%;
+    position: relative;
+}
+.container-image span {
+    width: 0.8rem;
+    height: 0.8rem;
+    position: absolute;
+    top: 0;
+    left: 0;
+    border-radius: 100%;
+    background-color: green;
+}
+
+.container-image img {
+    width: 100%;
+    border-radius: 100%;
+    height: 100%;
+}
+
+.wrapper-main {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    height: 90vh;
+    flex-wrap: nowrap;
+}
+
+/* Extra small devices (portrait phones, less than 576px) */
+@media (max-width: 575.98px) {
+    .start-conversation {
+        display: none;
+    }
+}
+
+/* Small devices (landscape phones, 576px and up) */
+@media (min-width: 576px) and (max-width: 767.98px) {
+    .start-conversation p {
+        font-size: 1.2rem;
+        min-height: 3rem;
+        margin-top: 1rem;
+    }
+}
+
+/* Medium devices (tablets, 768px and up) */
+@media (min-width: 768px) and (max-width: 991.98px) {
+    .start-conversation p {
+        font-size: 1.2rem;
+        min-height: 3rem;
+        margin-top: 1rem;
+    }
+}

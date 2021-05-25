@@ -1,0 +1,253 @@
+.privateMsg {
+	min-height: 400px;
+	height: 85vh;
+	width: 100%;
+	display: flex;
+	flex-direction: row;
+	justify-content: space-around;
+	padding-top: 2rem;
+}
+
+.userInfo {
+	width: 20%;
+	height: 85%;
+	display: flex;
+	flex-direction: column;
+	justify-content: center;
+	align-items: center;
+	background-color: #f1f1f1;
+	border-radius: 0.5rem;
+}
+
+.content-image {
+	height: 250px;
+	width: 185px;
+	overflow: hidden;
+	border-radius: 1rem;
+	-webkit-border-radius: 1rem;
+	-moz-border-radius: 1rem;
+	-ms-border-radius: 1rem;
+	-o-border-radius: 1rem;
+	background-color: #000;
+}
+.content-image img {
+	width: 100%;
+	height: 100%;
+}
+.content-info {
+	display: flex;
+	flex-direction: column;
+	justify-content: center;
+	align-items: center;
+}
+
+.privateMsg main {
+	width: 70%;
+	position: relative;
+	height: 85%;
+	background-color: #f1f1f1;
+	border-radius: 0.5rem;
+	padding: 0 0.5rem;
+	-webkit-border-radius: 0.5rem;
+	-moz-border-radius: 0.5rem;
+	-ms-border-radius: 0.5rem;
+	-o-border-radius: 0.5rem;
+	overflow: hidden;
+}
+
+.container-msg {
+	height: 75%;
+	width: 100%;
+	display: flex;
+	flex-direction: column;
+	overflow-y: scroll;
+	padding: 0.5rem 1rem;
+	color: #f1f1f1;
+}
+.sayHello {
+	color: #3e4042;
+	font-size: 2rem;
+	margin: 10% auto;
+}
+
+.line-msg-from {
+	display: flex;
+	flex-direction: row !important;
+	width: 55%;
+	word-wrap: break-word;
+	background-color: rgb(255, 255, 255);
+	margin-bottom: 1rem;
+	border-radius: 0.5rem;
+	-webkit-border-radius: 0.5rem;
+	-moz-border-radius: 0.5rem;
+	-ms-border-radius: 0.5rem;
+	-o-border-radius: 0.5rem;
+}
+.line-msg-to {
+	width: 55%;
+	background-color: rgb(255, 255, 255);
+	margin-bottom: 1rem;
+	border-radius: 0.5rem;
+	-webkit-border-radius: 0.5rem;
+	-moz-border-radius: 0.5rem;
+	-ms-border-radius: 0.5rem;
+	-o-border-radius: 0.5rem;
+	position: relative;
+	display: flex;
+	flex-direction: row-reverse !important;
+}
+
+.line-msg-from p {
+	width: 100%;
+	padding: 0 0.2rem;
+	border-radius: 0.5rem;
+}
+.line-msg-to p {
+	padding: 0 0.2rem;
+	width: 100%;
+	border-radius: 0.5rem;
+}
+.input-msg {
+	background-color: #f1f1f1;
+	max-height: 20%;
+	border-radius: 0.5rem;
+	-webkit-border-radius: 0.5rem;
+	-moz-border-radius: 0.5rem;
+	-ms-border-radius: 0.5rem;
+	-o-border-radius: 0.5rem;
+	padding: 0.5rem;
+	display: flex;
+	flex-direction: row;
+	justify-content: space-around;
+	overflow: hidden;
+}
+
+.input-msg textarea {
+	width: 80%;
+	height: 80px;
+	border-radius: 0.5rem;
+	border: 0;
+	outline: 0;
+	-webkit-border-radius: 0.5rem;
+	-moz-border-radius: 0.5rem;
+	-ms-border-radius: 0.5rem;
+	-o-border-radius: 0.5rem;
+	word-break: break-all;
+	padding: 0.3rem;
+}
+
+.primary-text {
+	background-color: #0084ff;
+}
+
+.secondary-text {
+	background-color: #3e4042;
+}
+
+.input-msg .content-option {
+	width: 5%;
+	border-radius: 0.5rem;
+	-webkit-border-radius: 0.5rem;
+	-moz-border-radius: 0.5rem;
+	-ms-border-radius: 0.5rem;
+	-o-border-radius: 0.5rem;
+	display: flex;
+	flex-direction: row;
+	justify-content: space-between;
+	align-items: center;
+}
+
+.send-msg {
+	font-size: 2rem;
+}
+
+.send-msg:hover {
+	cursor: pointer;
+	transition: All 0.3s;
+	-webkit-transition: All 0.3s;
+	-moz-transition: All 0.3s;
+	-ms-transition: All 0.3s;
+	-o-transition: All 0.3s;
+}
+
+/* Extra small devices (portrait phones, less than 576px) */
+@media (max-width: 575.98px) {
+	.privateMsg {
+		margin: 0 auto;
+		height: 80vh;
+		margin-top: 1.5rem;
+	}
+	.privateMsg main {
+		width: 95%;
+		height: 80vh;
+	}
+	.userInfo {
+		display: none;
+	}
+
+	.line-msg-from span {
+		width: 10%;
+	}
+	.line-msg-from p {
+		width: 90%;
+	}
+
+	.input-msg textarea {
+		width: 70% !important;
+	}
+
+	.input-msg .content-option {
+		width: 20%;
+	}
+}
+
+/* Small devices (landscape phones, 576px and up) */
+@media (min-width: 576px) and (max-width: 767.98px) {
+	.privateMsg {
+		margin: 0 auto;
+		height: 80vh;
+	}
+	.privateMsg main {
+		width: 85%;
+		height: 80vh;
+	}
+	.userInfo {
+		display: none;
+	}
+
+	.line-msg-from span {
+		width: 10%;
+	}
+	.line-msg-from p {
+		width: 90%;
+	}
+	.input-msg textarea {
+		width: 70% !important;
+	}
+	.input-msg .content-option {
+		width: 20%;
+	}
+}
+
+/* Medium devices (tablets, 768px and up) */
+@media (min-width: 768px) and (max-width: 991.98px) {
+	.privateMsg {
+		margin: 0 auto;
+		margin-top: 2rem;
+		height: 80vh;
+	}
+	.privateMsg main {
+		width: 70%;
+		height: 80vh;
+	}
+	.content-image {
+		height: 170px;
+		width: 120px;
+	}
+	.input-msg textarea {
+		width: 70% !important;
+	}
+	.input-msg .content-option {
+		width: 20%;
+	}
+}

@@ -48,11 +48,7 @@ app.use(
 );
 
 // generate socket io server
-const IO = socketIo(server, {
-    cors: {
-        Credential: true,
-    },
-});
+const IO = socketIo(server);
 
 // socket io
 IO.on('connection', async socket => {

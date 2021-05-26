@@ -14,8 +14,8 @@ import { io } from 'socket.io-client';
 
 // handle Socket socket
 export const IO = io(HEROKU, {
-    withCredentials: true,
     transports: ['websocket'],
+    withCredentials: true,
 });
 
 export default function App() {

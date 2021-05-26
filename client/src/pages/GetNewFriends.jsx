@@ -18,6 +18,7 @@ export default function GetNewFriends(props) {
             // get new friend result of search
             if (friends.length > 0) {
                 IO.emit('getNewFriend', e.target.value);
+                console.log('emitted');
                 IO.on('newFriend', data => {
                     console.log('newFriend  : ' + data);
                     const result = data.filter(newFriend => {
@@ -32,6 +33,7 @@ export default function GetNewFriends(props) {
                 });
             } else {
                 IO.emit('getNewFriend', e.target.value);
+                console.log('emitted');
                 IO.on('newFriend', data => {
                     console.log('newFriend  : ' + data);
                     const result = data.filter(newFriend => {

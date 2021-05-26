@@ -52,10 +52,12 @@ export default function Navbar(props) {
                     history.push('/');
                 }, 1500);
             })
-            .catch(({ response }) => {
+            .catch(error => {
                 // if there any error display toaster friendly show Error message
-                if (response && response.data.message) {
-                    toast.error(response.data.message, {
+                if (!error.response) {
+                    console.log(error.message);
+                } else {
+                    toast.error(error.response.data.message, {
                         position: 'top-right',
                         autoClose: 2000,
                         hideProgressBar: false,
@@ -115,7 +117,7 @@ export default function Navbar(props) {
                             </li>
                         </ul>
                         {!Auth.isUser ? (
-                            <div className="nav-item logout navItems">
+                            <div className="nav-item navItems">
                                 <NavLink
                                     className="nav-link"
                                     aria-current="page"
@@ -126,7 +128,7 @@ export default function Navbar(props) {
                         ) : null}
                         {Auth.isUser ? (
                             <div
-                                className="nav-item navItems"
+                                className="nav-item logout navItems"
                                 onClick={handleLogout}>
                                 logout <HiOutlineLogout />
                             </div>

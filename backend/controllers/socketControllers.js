@@ -24,11 +24,10 @@ module.exports = {
         }
     },
     getOneUser: async _id => {
-        try {
-            return await User.findOne({ _id }).select('_id username email');
-        } catch (error) {
-            if (error) throw new Error(error.message);
-        }
+        const result = await User.findOne({ _id }).select('_id username email');
+        console.log(result);
+        console.log(_id);
+        return result;
     },
     // get private message
     getPrivateChat: async (userId, friendId) => {
@@ -60,9 +59,12 @@ module.exports = {
     //  search about new friend
     getNewFriends: async username => {
         try {
-            return await User.find({
-                username: `/${username}/i`,
-            }).select('_id username imageProfile');
+            const result = await User.find({
+                username: { $regex: username, $options: 'i' },
+            })
+                .select('_id username imageProfile')
+                .limit(5);
+            return result;
         } catch (error) {
             if (error) throw new Error(error.message);
             return { msg: error.message };
@@ -95,7 +97,7 @@ module.exports = {
                     },
                 },
                 { new: true },
-                (err, docs) => {
+                err => {
                     if (err) throw new Error(err.message);
                 }
             );
@@ -134,7 +136,7 @@ module.exports = {
                     },
                 },
                 { new: true },
-                (err, docs) => {
+                err => {
                     if (err) throw Error(err.message);
                 }
             );
@@ -153,7 +155,7 @@ module.exports = {
                     $pull: { friends: { friendId: friend.friendId } },
                 },
                 { new: true },
-                (err, docs) => {
+                err => {
                     if (err) throw new Error(err.message);
                 }
             );
@@ -172,7 +174,7 @@ module.exports = {
                     $pull: { friends: { friendId: friend.friendId } },
                 },
                 { new: true },
-                (err, docs) => {
+                err => {
                     if (err) throw new Error(err.message);
                 }
             );
@@ -185,7 +187,7 @@ module.exports = {
                     $pull: { friends: { friendId: user._id } },
                 },
                 { new: true },
-                (err, docs) => {
+                err => {
                     if (err) throw new Error(err.message);
                 }
             );

@@ -19,7 +19,6 @@ const {
     addFriend,
     acceptFriend,
     deleteFriend,
-    getPrivateChat,
     cancelFriend,
     getFriendRequest,
 } = require('./controllers/socketControllers');
@@ -51,9 +50,7 @@ app.use(
 // generate socket io server
 const IO = socketIo(server, {
     cors: {
-        origin: process.env.CLIENT_URL,
-        methods: ['GET', 'POST', 'DELETE', 'PUT'],
-        credentials: true,
+        Credential: true,
     },
 });
 
@@ -104,14 +101,6 @@ IO.on('connection', async socket => {
 
         socket.on('deleteFriend', async (user, friend) => {
             await deleteFriend(user, friend);
-        });
-
-        socket.on('getPrivateMessage', async ({ friendId }) => {
-            const privateMessage = await getPrivateChat(
-                request.user._id,
-                friendId
-            );
-            socket.emit('privateMessages', privateMessage);
         });
 
         socket.on('sendMessage', async (user, content) => {

@@ -3,6 +3,7 @@ const { validLogin, validRegister } = require('../helpers/validUser');
 const { hash, compare } = require('bcrypt');
 const { sign, verify } = require('jsonwebtoken');
 const cookie = require('cookie');
+const Message = require('../models/messageModel');
 
 module.exports = {
     register: async (req, res) => {
@@ -175,22 +176,49 @@ module.exports = {
             });
         }
     },
-
-    // get specific user
     getOneUser: async (req, res) => {
-        const _id = req.headers.user;
         try {
-            await User.findOne({ _id }, null, { new: true }, (err, user) => {
-                if (err) {
-                    throw new Error(err.message);
+            const id = req.query.friendId;
+            await User.findOne(
+                { _id: id },
+                null,
+                { new: true },
+                (error, resp) => {
+                    if (error) {
+                        throw new Error(error);
+                    }
+                    if (!resp) {
+                        res.status(400).json({ message: 'user not found' });
+                    }
+                    if (resp) {
+                        res.status(200).json({ message: resp });
+                    }
                 }
-                return res.status(200).json({
-                    success: true,
-                    message: user,
-                });
-            });
+            );
         } catch (error) {
-            if (error) throw new Error(error.message);
+            res.status(500).json({ message: 'something went wrong!' });
+        }
+    },
+    getPrivateMessages: async (req, res) => {
+        try {
+            const id = req.query.friendId;
+            const from = await Message.find(
+                { from: req.user._id, to: id },
+                error => {
+                    if (error) throw new Error(error);
+                }
+            );
+            const to = await Message.find(
+                { from: id, to: req.user._id },
+                error => {
+                    if (error) throw new Error(error);
+                }
+            );
+
+            res.status(200).json({ message: [...from, ...to] });
+        } catch (error) {
+            console.log(error);
+            res.status(500).json({ message: 'something went wrong!' });
         }
     },
 };

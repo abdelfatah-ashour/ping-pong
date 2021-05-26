@@ -5,13 +5,9 @@ const express = require('express');
 const app = express();
 const cors = require('cors');
 const socketIo = require('socket.io');
-const https = require('https');
-const fs = require('fs');
-const options = {
-    key: fs.readFileSync('key.pem'),
-    cert: fs.readFileSync('cert.pem'),
-};
-const server = https.createServer(options, app);
+const http = require('http');
+
+const server = http.createServer(app);
 const CookieParser = require('cookie-parser');
 const morgan = require('morgan');
 const helmet = require('helmet');
@@ -53,7 +49,7 @@ app.use(
 );
 
 // generate socket io server
-const IO = socketIo(server, { secure: true });
+const IO = socketIo(server);
 
 // socket io
 IO.on('connection', async socket => {
@@ -131,4 +127,4 @@ app.use('/api', require('./routes/MessageRoutes'));
 // listen backend server on port 9000
 const PORT = process.env.PORT || 9000;
 
-server.listen(PORT);
+server.listen(PORT, () => console.log(`API is working on port ${PORT}`));

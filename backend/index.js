@@ -53,7 +53,7 @@ app.use(
 );
 
 // generate socket io server
-const IO = socketIo(server);
+const IO = socketIo(server, { secure: true });
 
 // socket io
 IO.on('connection', async socket => {

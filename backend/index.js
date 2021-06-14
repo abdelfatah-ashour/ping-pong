@@ -56,14 +56,11 @@ const IO = socketIo(server, { Credential: true });
 IO.on("connection", async (socket) => {
   console.log("connected to socket io in backend side ✔");
   try {
-    console.log("under Try");
+
     const { request } = socket;
-    console.log("headers , ", request.headers);
+
     const token = cookie.parse(request.headers.cookie);
     if (token.auth) {
-      console.log("authorizated");
-      // parse cookie from req.headers.cookie === String to we should parse it
-      // verify token to get decoded of jwt token
       const decoded = verify(token.auth, process.env.ACCESS_TOKEN);
       // set user obj into req object
       request.user = decoded;
@@ -133,6 +130,15 @@ if (process.env.NODE_ENV === "development") {
 app.get("/", (req, res) => {
   res.send("hello world");
 });
+
+process.on("uncaughtException", (error) => {
+  console.log(error.message);
+});
+
+process.on("unhandledRejection", (reason) => {
+  console.log(reason);
+});
+
 // setup routing here
 app.use("/api", require("./routes/UserRoutes"));
 app.use("/api", require("./routes/MessageRoutes"));

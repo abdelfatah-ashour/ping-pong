@@ -9,14 +9,13 @@ export default function BoxChat({
   handleSendMsg,
   user,
 }) {
-    
   const inputMsg = useRef();
   useEffect(() => {
     inputMsg.current.focus();
   }, []);
 
   return (
-    <div className="input-msg row w-100">
+    <div className="input-msg w-100">
       <textarea
         name="msg-box col-11"
         cols="70"

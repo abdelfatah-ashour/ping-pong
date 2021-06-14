@@ -61,7 +61,6 @@ export default function Login(props) {
         setTimeout(() => {
           history.push("/");
         }, 1500);
-        console.log(resp);
       })
       .catch((error) => {
         // if there any error display toaster friendly show Error message
@@ -77,7 +76,6 @@ export default function Login(props) {
           });
         } else {
           alert(error.message);
-          console.log(error);
         }
       });
   };

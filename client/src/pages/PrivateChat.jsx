@@ -1,3 +1,4 @@
+import Cookies from "js-cookie";
 import React, { useContext, useEffect, useState } from "react";
 import axios from "../API";
 import { IO } from "../App";
@@ -34,6 +35,9 @@ export default function PrivateChat({ match }) {
       .get("api/auth/getOneUser", {
         params: {
           friendId: _id,
+        },
+        headers: {
+            authorization: Cookies.get("authorization"),
         },
       })
       .then(({ data }) => {

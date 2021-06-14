@@ -2,7 +2,6 @@ const User = require("../models/userModel");
 const { validLogin, validRegister } = require("../helpers/validUser");
 const { hash, compare } = require("bcrypt");
 const { sign, verify } = require("jsonwebtoken");
-const cookie = require("cookie");
 
 module.exports = {
   register: async (req, res) => {
@@ -87,30 +86,22 @@ module.exports = {
               _id: user._id,
               email: user.email,
             },
-            process.env.ACCESS_TOKEN ||
-              "asdadadasdasdaslfbzxkjhfkjhaloikklasjdop;"
+            process.env.ACCESS_TOKEN
           );
 
-          res.setHeader(
-            "Set-Cookie",
-            cookie.serialize("auth", userToken, {
-              httpOnly: process.env.NODE_ENV === "production",
-              secure: process.env.NODE_ENV === "production",
-              sameSite: process.env.NODE_ENV === "production" ? "none" : false,
-              path: "/",
-              maxAge: 1 * 24 * 60 * 60, // 1 day})
-            })
-          );
           // change user state to online
           await User.findOneAndUpdate({ email }, { isOnline: true });
-          return res.status(200).json({
-            success: true,
-            message: {
-              _id: user._id,
-              username: user.username,
-              email: user.email,
-            },
-          });
+          return res
+            .header("authorization", userToken)
+            .status(200)
+            .json({
+              success: true,
+              message: {
+                _id: user._id,
+                username: user.username,
+                email: user.email,
+              },
+            });
         });
       });
     } catch (error) {
@@ -130,9 +121,6 @@ module.exports = {
         },
         { new: true }
       );
-
-      // clear cookie
-      res.clearCookie("auth");
       res.status(200).json({
         success: true,
         message: "see you later 🥰",
@@ -146,7 +134,7 @@ module.exports = {
   },
   isAuth: async (req, res, next) => {
     try {
-      const user = req.cookies.auth;
+      const user = req.cookies.auth || req.headers.authorization;
       if (!user) {
         res.status(401).json({
           success: false,

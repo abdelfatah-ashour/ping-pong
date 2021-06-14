@@ -45,6 +45,7 @@ app.use(
     origin: process.env.CLIENT_URL,
     path: "/",
     methods: ["GET", "POST", "PUT", "DELETE"],
+    exposedHeaders: ["authorization"],
   })
 );
 
@@ -56,7 +57,7 @@ IO.on("connection", async (socket) => {
   try {
     console.log("connected to socket io in backend side ✔");
     const { request } = socket;
-    const token = cookie.parse(request.headers.cookie || "");
+    const token = cookie.parse(request.headers.Authorization || "");
 
     if (token.auth) {
       // parse cookie from req.headers.cookie === String to we should parse it

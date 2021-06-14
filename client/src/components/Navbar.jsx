@@ -1,4 +1,4 @@
-import { get, getJSON, remove } from "js-cookie";
+import Cookies, { get, getJSON, remove } from "js-cookie";
 import React, { useContext, useEffect, useState } from "react";
 import { AiOutlineMenu } from "react-icons/ai";
 import { NavLink, useHistory } from "react-router-dom";
@@ -31,6 +31,9 @@ export default function Navbar(props) {
     await API.get("/api/auth/logout", {
       params: {
         userId: Auth._id,
+      },
+      headers: {
+        authorization: Cookies.get("authorization"),
       },
     })
       .then(({ data }) => {

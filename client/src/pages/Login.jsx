@@ -34,12 +34,12 @@ export default function Login(props) {
 
     // set login
     await API.post("api/auth/login", user)
-      .then(({ data }) => {
+      .then((resp) => {
         setAuth({
           isUser: true,
         });
 
-        const { _id, username, email } = data.message;
+        const { _id, username, email } = resp.data.message;
         Cookies.set(
           "Info",
           {
@@ -49,9 +49,14 @@ export default function Login(props) {
           },
           { sameSite: "Strict", expires: 7, path: "/" }
         );
+        Cookies.set("authorization", resp.headers.authorization, {
+          secure: true,
+          sameSite: "strict",
+          expires: 1,
+        });
 
         // if success display toaster friendly show success message
-        toast.success("🦄 Welcome " + data.message.username, {
+        toast.success("🦄 Welcome " + resp.data.message.username, {
           position: "top-right",
           autoClose: 2000,
           hideProgressBar: false,

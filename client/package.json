@@ -1,5 +1,4 @@
 {
-  "proxy": "https://ping-pong-chat.herokuapp.com",
   "name": "client",
   "version": "0.1.0",
   "type": "module",

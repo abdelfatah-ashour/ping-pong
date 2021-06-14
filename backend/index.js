@@ -57,7 +57,7 @@ IO.on("connection", async (socket) => {
   try {
     console.log("connected to socket io in backend side ✔");
     const { request } = socket;
-    const token = cookie.parse(request.headers.Authorization || "");
+    const token = cookie.parse(request.headers.authorization || "");
 
     if (token.auth) {
       // parse cookie from req.headers.cookie === String to we should parse it

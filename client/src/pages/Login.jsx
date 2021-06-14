@@ -82,7 +82,8 @@ export default function Login(props) {
             progress: undefined,
           });
         } else {
-          alert("something went wrong! .. try again later 💗");
+            alert(error.message);
+            console.log(error.message);
         }
       });
   };

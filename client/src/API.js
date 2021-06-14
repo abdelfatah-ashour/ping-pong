@@ -1,6 +1,6 @@
 import axios from "axios";
-import { API } from "./keys.json";
+import {HEROKU} from "./keys.json";
 export default axios.create({
-  baseURL: API,
+  baseURL: HEROKU,
   withCredentials: true,
 });

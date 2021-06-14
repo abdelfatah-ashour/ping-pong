@@ -16,6 +16,7 @@ import Register from "./pages/Register";
 export const IO = io(HEROKU, {
   transports: ["websocket"],
   withCredentials: true,
+  secure: true,
 });
 
 export default function App() {

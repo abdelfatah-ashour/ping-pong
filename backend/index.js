@@ -45,7 +45,7 @@ app.use(
     origin: process.env.CLIENT_URL,
     path: "/",
     methods: ["GET", "POST", "PUT", "DELETE"],
-    exposedHeaders: ["authorization"],
+    exposedHeaders: ["Set-Cookie"],
   })
 );
 
@@ -60,11 +60,11 @@ IO.on("connection", async (socket) => {
     const { request } = socket;
     console.log("headers , ", request.headers);
     const token = cookie.parse(request.headers.cookie);
-    if (token.authorization) {
+    if (token.auth) {
       console.log("authorizated");
       // parse cookie from req.headers.cookie === String to we should parse it
       // verify token to get decoded of jwt token
-      const decoded = verify(token.authorization, process.env.ACCESS_TOKEN);
+      const decoded = verify(token.auth, process.env.ACCESS_TOKEN);
       // set user obj into req object
       request.user = decoded;
 

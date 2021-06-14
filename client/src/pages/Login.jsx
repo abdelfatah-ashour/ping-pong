@@ -48,13 +48,6 @@ export default function Login(props) {
           },
           { secure: true, sameSite: "none", expires: 1, path: "/" }
         );
-        Cookies.set("authorization", resp.headers.authorization, {
-          secure: true,
-          sameSite: "none",
-          expires: 1,
-          path: "/",
-        });
-
         // if success display toaster friendly show success message
         toast.success("🦄 Welcome " + resp.data.message.username, {
           position: "top-right",

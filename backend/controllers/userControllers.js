@@ -2,7 +2,7 @@ const User = require("../models/userModel");
 const { validLogin, validRegister } = require("../helpers/validUser");
 const { hash, compare } = require("bcrypt");
 const { sign, verify } = require("jsonwebtoken");
-
+const Cookie = require("cookie");
 module.exports = {
   register: async (req, res) => {
     try {
@@ -91,17 +91,26 @@ module.exports = {
 
           // change user state to online
           await User.findOneAndUpdate({ email }, { isOnline: true });
-          return res
-            .header("authorization", userToken)
-            .status(200)
-            .json({
-              success: true,
-              message: {
-                _id: user._id,
-                username: user.username,
-                email: user.email,
-              },
-            });
+
+          res.setHeader(
+            "Set-Cookie",
+            Cookie.serialize("auth", userToken, {
+              httpOnly: process.env.NODE_ENV === "production",
+              secure: process.env.NODE_ENV === "production",
+              sameSite: process.env.NODE_ENV === "production" ? "none" : false,
+              path: "/",
+              maxAge: 24 * 60 * 60,
+            })
+          );
+
+          return res.status(200).json({
+            success: true,
+            message: {
+              _id: user._id,
+              username: user.username,
+              email: user.email,
+            },
+          });
         });
       });
     } catch (error) {

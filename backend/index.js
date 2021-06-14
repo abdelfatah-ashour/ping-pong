@@ -56,7 +56,9 @@ const IO = socketIo(server, { Credential: true });
 IO.on("connection", async (socket) => {
   console.log("connected to socket io in backend side ✔");
   try {
+    console.log("under Try");
     const { request } = socket;
+    console.log(request.headers);
     const token = cookie.parse(request.headers.cookie);
     if (token.authorization) {
       // parse cookie from req.headers.cookie === String to we should parse it
@@ -113,7 +115,7 @@ IO.on("connection", async (socket) => {
       });
     }
   } catch (error) {
-    console.log(error);
+    console.log(error.message);
   }
 });
 

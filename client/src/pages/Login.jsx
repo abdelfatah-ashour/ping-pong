@@ -40,13 +40,13 @@ export default function Login(props) {
         });
         const { _id, username, email } = resp.data.message;
         Cookies.set(
-          "none",
+          "Info",
           {
             _id,
             username,
             email,
           },
-          { secure: true, sameSite: "Strict", expires: 1, path: "/" }
+          { secure: true, sameSite: "none", expires: 1, path: "/" }
         );
         Cookies.set("authorization", resp.headers.authorization, {
           secure: true,

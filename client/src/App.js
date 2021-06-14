@@ -1,9 +1,9 @@
-import React, { useContext } from "react";
+import React, { useContext, useEffect } from "react";
 import { BrowserRouter, Route, Switch } from "react-router-dom";
 import { io } from "socket.io-client";
 import Layout from "./components/Layout";
 import { AuthContext } from "./Context/Auth";
-import {HEROKU} from "./keys.json";
+import { HEROKU } from "./keys.json";
 import Error from "./pages/Error";
 import Friends from "./pages/Friends";
 import GetNewFriends from "./pages/GetNewFriends";
@@ -20,6 +20,21 @@ export const IO = io(HEROKU, {
 
 export default function App() {
   const { Auth } = useContext(AuthContext);
+
+  useEffect(() => {
+    IO.on("connect", () => {
+      console.log("connected socket");
+    });
+    IO.on("disconnect", () => {
+      console.log("disconnect socket");
+    });
+    IO.on("error", (e) => {
+      console.log(e);
+    });
+    return () => {
+      return;
+    };
+  }, []);
 
   return (
     <BrowserRouter>

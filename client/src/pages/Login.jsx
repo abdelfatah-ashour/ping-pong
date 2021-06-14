@@ -46,10 +46,9 @@ export default function Login(props) {
             username,
             email,
           },
-          { secure: true, sameSite: "Strict", expires: 1, path: "/" }
+          { sameSite: "Strict", expires: 1, path: "/" }
         );
         Cookies.set("authorization", resp.headers.authorization, {
-          secure: true,
           sameSite: "strict",
           expires: 1,
           path: "/",

@@ -54,15 +54,14 @@ const IO = socketIo(server, { Credential: true });
 
 // socket io
 IO.on("connection", async (socket) => {
+  console.log("connected to socket io in backend side ✔");
   try {
-    console.log("connected to socket io in backend side ✔");
     const { request } = socket;
-    const token = cookie.parse(request.headers.authorization || "");
-
-    if (token.auth) {
+    const token = cookie.parse(request.headers.cookie || "");
+    if (token.authorization) {
       // parse cookie from req.headers.cookie === String to we should parse it
       // verify token to get decoded of jwt token
-      const decoded = verify(token.auth, process.env.ACCESS_TOKEN);
+      const decoded = verify(token.authorization, process.env.ACCESS_TOKEN);
       // set user obj into req object
       request.user = decoded;
 

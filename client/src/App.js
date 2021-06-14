@@ -3,7 +3,7 @@ import { BrowserRouter, Route, Switch } from "react-router-dom";
 import { io } from "socket.io-client";
 import Layout from "./components/Layout";
 import { AuthContext } from "./Context/Auth";
-import { HEROKU } from "./keys.json";
+import {HEROKU} from "./keys.json";
 import Error from "./pages/Error";
 import Friends from "./pages/Friends";
 import GetNewFriends from "./pages/GetNewFriends";

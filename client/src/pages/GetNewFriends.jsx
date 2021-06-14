@@ -13,7 +13,6 @@ export default function GetNewFriends(props) {
   // handle search input to change value
   const handleSearch = async (e) => {
     setSearch(e.target.value);
-    console.log(e.target.value);
     if (e.target.value.length > 3) {
       // get new friend result of search
       if (friends.length > 0) {

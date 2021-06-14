@@ -1,4 +1,4 @@
-import Cookies from "js-cookie";
+// import Cookies from "js-cookie";
 import React, { useContext, useEffect, useState } from "react";
 import { Link, useHistory } from "react-router-dom";
 import { toast } from "react-toastify";
@@ -38,16 +38,16 @@ export default function Login(props) {
         setAuth({
           isUser: true,
         });
-        const { _id, username, email } = resp.data.message;
-        Cookies.set(
-          "Info",
-          {
-            _id,
-            username,
-            email,
-          },
-          { secure: true, sameSite: "Strict", expires: 1, path: "/" }
-        );
+        // const { _id, username, email } = resp.data.message;
+        // Cookies.set(
+        //   "Info",
+        //   {
+        //     _id,
+        //     username,
+        //     email,
+        //   },
+        //   { secure: true, sameSite: "Strict", expires: 1, path: "/" }
+        // );
         // Cookies.set("authorization", resp.headers.authorization, {
         //   secure: true,
         //   sameSite: "strict",

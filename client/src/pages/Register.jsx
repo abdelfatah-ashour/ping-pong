@@ -35,7 +35,7 @@ export default function Register(props) {
   // handle submit
   const handleSubmit = async (e) => {
     e.preventDefault();
-    await API.post("/api/auth/register", user)
+    await API.post("api/auth/register", user)
       .then(({ data }) => {
         toast.success("🦄 " + data.message, {
           position: "top-center",

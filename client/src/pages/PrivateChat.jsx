@@ -31,7 +31,7 @@ export default function PrivateChat({ match }) {
 
   async function getOneUser() {
     await axios
-      .get("/api/auth/getOneUser", {
+      .get("api/auth/getOneUser", {
         params: {
           friendId: _id,
         },

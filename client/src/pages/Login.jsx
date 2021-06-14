@@ -33,7 +33,7 @@ export default function Login(props) {
     e.preventDefault();
 
     // set login
-    await API.post("/api/auth/login", user)
+    await API.post("api/auth/login", user)
       .then(({ data }) => {
         setAuth({
           isUser: true,

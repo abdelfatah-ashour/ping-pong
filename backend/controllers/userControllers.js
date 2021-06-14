@@ -121,6 +121,7 @@ module.exports = {
         },
         { new: true }
       );
+      res.clearCookie("auth");
       res.status(200).json({
         success: true,
         message: "see you later 🥰",

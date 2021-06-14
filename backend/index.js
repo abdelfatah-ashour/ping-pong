@@ -58,9 +58,10 @@ IO.on("connection", async (socket) => {
   try {
     console.log("under Try");
     const { request } = socket;
-    console.log(request.headers);
+    console.log("headers , ", request.headers);
     const token = cookie.parse(request.headers.cookie);
     if (token.authorization) {
+      console.log("authorizated");
       // parse cookie from req.headers.cookie === String to we should parse it
       // verify token to get decoded of jwt token
       const decoded = verify(token.authorization, process.env.ACCESS_TOKEN);

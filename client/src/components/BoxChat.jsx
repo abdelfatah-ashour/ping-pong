@@ -1,54 +1,59 @@
-import React, { useEffect, useRef } from 'react';
-import { FiSend } from 'react-icons/fi';
-import { IO } from '../App';
-import '../css/privateMsg.css';
+import React, { useEffect, useRef } from "react";
+import { FiSend } from "react-icons/fi";
+import { IO } from "../App";
+import "../css/privateMsg.css";
 
-export default function BoxChat({ Msg, setMsg, handleSendMsg, user }) {
-    const inputMsg = useRef();
+export default function BoxChat({
+  messsageText,
+  handleSetMsg,
+  handleSendMsg,
+  user,
+}) {
+    
+  const inputMsg = useRef();
+  useEffect(() => {
+    inputMsg.current.focus();
+  }, []);
 
-    // handle change  on box msg
-    const handleChangeBoxMsg = e => {
-        setMsg(e.target.value);
-        if (Msg.length === 0) {
-            IO.emit('noType', false, user);
-        }
-        if (Msg.length + 1 > 0) {
-            IO.emit('type', true, user);
-        }
-    };
-
-    useEffect(() => {
-        inputMsg.current.focus();
-    }, []);
-
-    return (
-        <div className="input-msg">
-            <textarea
-                name="msg-box"
-                cols="70"
-                wrap="soft"
-                autoFocus
-                onChange={handleChangeBoxMsg}
-                value={Msg}
-                ref={inputMsg}
-            />
-            <div className="content-option">
-                <span
-                    className="send-msg"
-                    style={
-                        Msg.length >= 1
-                            ? { color: 'rgb(0, 166, 243)' }
-                            : { color: '#888' }
-                    }
-                    onClick={() => {
-                        if (Msg.length >= 1) {
-                            handleSendMsg();
-                        }
-                    }}
-                    disabled={Msg?.length <= 0 ? true : false}>
-                    <FiSend />
-                </span>
-            </div>
-        </div>
-    );
+  return (
+    <div className="input-msg row w-100">
+      <textarea
+        name="msg-box col-11"
+        cols="70"
+        wrap="soft"
+        autoFocus
+        onChange={(e) => {
+          handleSetMsg(e.target.value);
+          if (e.target.value.length > 0) {
+            IO.emit("send-typing", {
+              status: true,
+              to: user._id,
+            });
+          } else {
+            IO.emit("send-typing", {
+              status: false,
+              to: user._id,
+            });
+          }
+        }}
+        value={messsageText}
+        ref={inputMsg}
+        className="input-textarea"
+      />
+      <div className="content-option col-1">
+        <button
+          className="send-msg"
+          style={
+            messsageText.length > 1
+              ? { color: "rgb(0, 166, 243)" }
+              : { color: "#888" }
+          }
+          disabled={messsageText.length > 1 ? false : true}
+          onClick={handleSendMsg}
+        >
+          <FiSend />
+        </button>
+      </div>
+    </div>
+  );
 }

@@ -38,7 +38,6 @@ export default function Login(props) {
         setAuth({
           isUser: true,
         });
-
         const { _id, username, email } = resp.data.message;
         Cookies.set(
           "Info",
@@ -49,12 +48,12 @@ export default function Login(props) {
           },
           { secure: true, sameSite: "Strict", expires: 1, path: "/" }
         );
-        Cookies.set("authorization", resp.headers.authorization, {
-          secure: true,
-          sameSite: "strict",
-          expires: 1,
-          path: "/",
-        });
+        // Cookies.set("authorization", resp.headers.authorization, {
+        //   secure: true,
+        //   sameSite: "strict",
+        //   expires: 1,
+        //   path: "/",
+        // });
 
         // if success display toaster friendly show success message
         toast.success("🦄 Welcome " + resp.data.message.username, {

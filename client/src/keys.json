@@ -1,4 +1,4 @@
 {
   "API": "http://localhost:9000",
-  "HEROKU": "https://ping-pong-chat.herokuapp.com/"
+  "HEROKU": "https://ping-pong-chat.herokuapp.com"
 }

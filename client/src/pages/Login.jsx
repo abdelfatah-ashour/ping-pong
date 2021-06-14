@@ -47,12 +47,13 @@ export default function Login(props) {
             username,
             email,
           },
-          { sameSite: "Strict", expires: 7, path: "/" }
+          { secure: true, sameSite: "Strict", expires: 1, path: "/" }
         );
         Cookies.set("authorization", resp.headers.authorization, {
           secure: true,
           sameSite: "strict",
           expires: 1,
+          path: "/",
         });
 
         // if success display toaster friendly show success message
@@ -68,6 +69,7 @@ export default function Login(props) {
         setTimeout(() => {
           history.push("/");
         }, 1500);
+        console.log(resp);
       })
       .catch((error) => {
         // if there any error display toaster friendly show Error message
@@ -82,8 +84,8 @@ export default function Login(props) {
             progress: undefined,
           });
         } else {
-            alert(error.message);
-            console.log(error.message);
+          alert(error.message);
+          console.log(error);
         }
       });
   };

@@ -38,7 +38,7 @@ export default function Navbar(props) {
     })
       .then(({ data }) => {
         remove("Info");
-        remove("auth");
+        remove("authorization");
         setAuth({ isUser: null, username: null, _id: null });
         // if success display toaster friendly show success message
         toast.success("🦄 " + data.message, {

@@ -57,7 +57,7 @@ IO.on("connection", async (socket) => {
   console.log("connected to socket io in backend side ✔");
   try {
     const { request } = socket;
-    const token = cookie.parse(request.headers.cookie || "");
+    const token = cookie.parse(request.headers.cookie);
     if (token.authorization) {
       // parse cookie from req.headers.cookie === String to we should parse it
       // verify token to get decoded of jwt token
